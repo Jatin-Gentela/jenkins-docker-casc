@@ -1,0 +1,274 @@
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "agent"
+  - name: "build-agent"
+  - name: "built-in"
+  - name: "java11"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodes:
+  - permanent:
+      labelString: "agent java11"
+      launcher:
+        ssh:
+          credentialsId: "build-agent-SSH-creds"
+          host: "agent"
+          javaPath: "/opt/java/openjdk/bin/java"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "build-agent"
+      nodeDescription: "Slave build agent to run builds via SSH"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+  numExecutors: 3
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  slaveAgentPort: 50000
+  systemMessage: "Welcome to Jenkins-on-Local, your customized Jenkins running in\
+    \ a container\r\nURL: http://localhost:8080"
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+aws:
+  s3:
+    disableSessionToken: false
+    useHttp: false
+    usePathStyleUrl: false
+    useTransferAcceleration: false
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  copyartifact:
+    mode: PRODUCTION
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  sSHD:
+    port: -1
+unclassified:
+  aWSCodeDeployPublisher:
+    awsSecretKey: "****"
+    externalId: "71e1904d-0908-425b-922b-14ca4f501bc1"
+    proxyPort: 0
+  artifactoryBuilder:
+    jfrogPipelinesServer:
+      bypassProxy: false
+      connectionRetries: 3
+      credentialsConfig:
+        overridingCredentials: false
+        username: "****"
+      timeout: 300
+    useCredentialsPlugin: false
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        enableCache: false
+        manageHooks: false
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildFailureAnalyzer:
+    doNotAnalyzeAbortedJob: false
+    gerritTriggerEnabled: true
+    globalEnabled: true
+    graphsEnabled: false
+    knowledgeBase: "localFile"
+    maxLogSize: 0
+    metricSquashingEnabled: false
+    noCausesEnabled: true
+    noCausesMessage: "No problems were identified. If you know why this problem occurred,\
+      \ please add a suitable Cause for it."
+    nrOfScanThreads: 3
+    slackFailureCategories: "ALL"
+    slackNotifEnabled: false
+    testResultParsingEnabled: false
+  casCGlobalConfig:
+    configurationPath: "https://raw.githubusercontent.com/bobbybabu007/jenkins-docker-k8s/main/docker/jenkins.yaml"
+  cxScanBuilder:
+    asyncHtmlRemoval: false
+    continueBuildWhenTimedOut: false
+    enableCertificateValidation: false
+    forcingVulnerabilityThresholdEnabled: false
+    globallyDefineScanSettings: false
+    hideDebugLogs: false
+    hideResults: false
+    isProxy: true
+    jobGlobalStatusOnThresholdViolation: FAILURE
+    lockVulnerabilitySettings: true
+    prohibitProjectCreation: false
+    scanTimeOutEnabled: false
+  datadogGlobalConfiguration:
+    cacheBuildRuns: true
+    ciInstanceName: "jenkins"
+    collectBuildLogs: false
+    emitConfigChangeEvents: false
+    emitSecurityEvents: true
+    emitSystemEvents: true
+    enableCiVisibility: false
+    refreshDogstatsdClient: false
+    reportWith: "HTTP"
+    retryLogs: true
+    targetApiURL: "https://api.datadoghq.com/api/"
+    targetHost: "localhost"
+    targetLogIntakeURL: "https://http-intake.logs.datadoghq.com/v1/input/"
+    targetPort: 8125
+    targetTraceCollectionPort: 8126
+    targetWebhookIntakeURL: "https://webhook-intake.datadoghq.com/api/v2/webhook/"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://localhost:8080/github-webhook/"
+  gitLabConnectionConfig:
+    connections:
+    - clientBuilderId: "autodetect"
+      connectionTimeout: 10
+      ignoreCertificateErrors: false
+      readTimeout: 10
+    useAuthenticatedEndpoint: true
+  injectionConfig:
+    allowUntrusted: false
+    checkForBuildAgentErrors: false
+    enabled: false
+    enforceUrl: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  jFrogPlatformBuilder:
+    allowHttpConnections: false
+  jobConfigHistory:
+    excludePattern: "queue\\.xml|nodeMonitors\\.xml|UpdateCenter\\.xml|global-build-stats|LockableResourcesManager\\\
+      .xml|MilestoneStep\\.xml|cloudbees-disk-usage-simple\\.xml"
+    saveModuleConfiguration: false
+    showBuildBadges: "always"
+    showChangeReasonCommentWindow: true
+    skipDuplicateHistory: true
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pViewProjectProperty:
+    treeSplitChar: "-"
+  pollSCM:
+    pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  slackNotifier:
+    botUser: false
+    sendAsText: false
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+  splunkJenkinsInstallation:
+    enabled: false
+    globalPipelineFilter: true
+    maxEventsBatchSize: 262144
+    metadataHost: "62808bffd29a"
+    port: 8088
+    rawEventEnabled: true
+    retriesOnError: 3
+    useSSL: true
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  upstream:
+    globalUpstreamFilterStrategy: UseOldest
+  whitelist:
+    enabled: false
+tool:
+  dockerTool:
+    installations:
+    - home: "/usr/bin/docker"
+      name: "docker"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  gradle:
+    installations:
+    - home: "/opt/gradle"
+      name: "gradle"
+  jdk:
+    installations:
+    - home: "/opt/java/openjdk"
+      name: "java11"
+  maven:
+    installations:
+    - home: "/opt/maven"
+      name: "maven"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+  powerShellInstallation:
+    installations:
+    - home: "powershell.exe"
+      name: "DefaultWindows"
+    - home: "pwsh"
+      name: "DefaultLinux"
+  sonarRunnerInstallation:
+    installations:
+    - home: "/usr/bin/sonar-scanner"
+      name: "sonar"
