@@ -13,7 +13,7 @@ jenkins:
   - name: "java11"
   markupFormatter: "plainText"
   mode: NORMAL
-  myViewsTabBar: "standard"
+ myViewsTabBar: "standard"
   nodes:
   - permanent:
       labelString: "agent java11"
@@ -29,7 +29,6 @@ jenkins:
       remoteFS: "/home/jenkins/agent"
       retentionStrategy: "always"
   numExecutors: 3
-  - permanent:
       labelString: "agent devops"
       launcher:
         ssh:
