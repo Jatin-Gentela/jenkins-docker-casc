@@ -1,0 +1,44 @@
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  labelAtoms:
+  - name: "agent"
+  - name: "build-agent"
+  - name: "built-in"
+  - name: "java11"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodes:
+  - permanent:
+      labelString: "agent java11"
+      launcher:
+        ssh:
+          credentialsId: "build-agent-creds"
+          host: "agent"
+          javaPath: "/opt/java/openjdk/bin/java"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "build-agent"
+      nodeDescription: "Slave build agent to run builds via SSH"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+  - permanent:
+      labelString: "agent17"
+      launcher:
+        ssh:
+          credentialsId: "build-agent-creds"
+          host: "agent17"
+          javaPath: "/opt/java/openjdk/bin/java"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "agent17"
+      nodeDescription: "Slave build agent to run builds via SSH"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+  
