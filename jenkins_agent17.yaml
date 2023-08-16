@@ -44,7 +44,7 @@ jenkins:
       nodeproperties:
       - envVars:
           env:
-          - key: "H2_HOME"
+          - key: "M2_HOME"
             value: "/opt/maven"
           - key: "PATH"
             value: "/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/maven/bin:/opt/gradle/bin:/opt/sonar-scanner/bin:/home/zap"
