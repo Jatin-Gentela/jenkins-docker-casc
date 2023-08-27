@@ -24,7 +24,7 @@ jenkins:
           javaPath: "/opt/java/openjdk/bin/java"
           port: 22
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
-      name: "build-agent"
+      name: "agent"
       nodeDescription: "Slave build agent to run builds via SSH"
       remoteFS: "/home/jenkins/agent"
       retentionStrategy: "always"
@@ -32,7 +32,7 @@ jenkins:
       labelString: "agent17"
       launcher:
         ssh:
-          credentialsId: "build-agent-creds"
+          credentialsId: "agent17_creds"
           host: "agent17"
           javaPath: "/opt/java/openjdk/bin/java"
           port: 22
